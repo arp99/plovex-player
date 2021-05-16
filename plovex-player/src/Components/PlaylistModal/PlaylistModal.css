@@ -1,0 +1,94 @@
+.playlistmodal__container{
+    width: 70%;
+    background: #fff;
+    max-width: 30rem;
+    box-shadow: 0 6px 8px -2px pink;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50% ,-50%);
+    z-index: 1;
+}
+.modal__header{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.5rem 1rem;
+    border-bottom: 2px solid #f891a2;
+}
+.modal__header #heading , #close{
+    font-size: 1.3rem;
+}
+.modal__header #close{
+    padding: 0.5rem 0.8rem;
+    border-radius: 50%;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.modal__header #close:hover {
+    box-shadow: 0 6px 8px -2px pink;
+    color: #f1294a;
+}
+.playlists__container{
+    height: max-content;
+    max-height: 15rem;
+    overflow-y: auto;
+}
+.input_group{
+    padding:0.5rem 1rem;
+    display: flex;
+    border-bottom: 1px solid pink;
+}
+.input_group > input {
+    margin-right: 1rem;
+}
+.input_group > label {
+    font-size: 1.2rem;
+}
+.modal__footer{
+    display: flex;
+    width: 100%;
+    align-items: baseline;
+    padding: 0.5rem 1rem;
+    border-top: 2px solid #f891a2;
+}
+.modal__footer #create , #footer{
+    font-size: 1.3rem;
+}
+.modal__footer #create{
+    margin-right: 1rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 50%;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.modal__footer #create:hover{
+    box-shadow: 0 6px 8px -2px pink;
+    color: #f1294a;
+}
+.create-playlist{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+.create-playlist >input{
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-bottom: 2px solid #f891a2;
+    margin-bottom: 0.5rem;
+}
+.create-playlist .btn{
+    padding:0.5rem;
+    background: #f891a2;
+    border: 1px solid #ee7d90;
+    color: #312929;
+    font-weight: 550;
+    letter-spacing: 0.1rem;
+    cursor: pointer;
+}
+.create-playlist .btn:hover{
+    background: #fa5f79;
+    color: aliceblue;
+}
