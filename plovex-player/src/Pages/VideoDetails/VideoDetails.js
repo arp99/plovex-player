@@ -4,6 +4,7 @@ import { PlaylistModal } from "../../Components"
 import { useVideos } from "../../Context"
 import "./VideoDetails.css"
 export const VideoDetails = () =>{
+    const [ showPlaylistModal , setShowPlaylistModal ] = useState(false)
     const { videoId } = useParams()
     const { state } = useVideos()
     const videoData  = state.videos.find(video => video.id === videoId)
@@ -21,6 +22,14 @@ export const VideoDetails = () =>{
             ></iframe>
             <h2>{title}</h2>
             <h3><Link to="/history" >History</Link></h3>
+            <button onClick={()=>setShowPlaylistModal(true)}>Add to Playlist</button>
+            {
+                showPlaylistModal ?(
+                    <PlaylistModal 
+                            showModal={setShowPlaylistModal}
+                            videoId={videoId}
+                    />):null
+            }
        </div>
     )
 }
