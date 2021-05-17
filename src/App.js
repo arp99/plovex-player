@@ -1,7 +1,7 @@
 import { Navbar } from "./Components"
 import { Routes , Route } from "react-router-dom"
 import './App.css';
-import { History, VideoDetails, Videolisting, Watchlater } from "./Pages";
+import { History, VideoDetails, Videolisting, Watchlater, Playlist } from "./Pages";
 
 function App() {
   return (
@@ -12,6 +12,7 @@ function App() {
         <Route path="/v/:videoId"  element={<VideoDetails />}/>
         <Route path="/history"  element={<History />}/>
         <Route path="/watchlater" element={<Watchlater />} />
+        <Route path="/playlist" element={<Playlist />} />
       </Routes>
     </div>
   );

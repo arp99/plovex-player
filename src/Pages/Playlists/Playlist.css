@@ -1,0 +1,25 @@
+.allPlaylists__container{
+    height: max-content;
+    min-height: 100vh;
+}
+.playlist-videos__container{
+    width: 100vw;
+    height: 15rem;
+    padding-bottom: 1rem;
+    display: flex;
+    overflow-x: auto;
+    padding-left: 1rem;
+}
+.playlist_name h1{
+    text-transform: capitalize;
+}
+.playlist-thumnail__container{
+    width: max-content;
+    height: 100%;
+}
+.playlist-thumnail__container img{
+    display: block;
+    width: 10rem;
+    height: 100%;
+    margin-right: 1rem;
+}
