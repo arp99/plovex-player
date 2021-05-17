@@ -1,27 +1,26 @@
 import { v4 as uuid } from "uuid"
 
 export const reducer  = (prevState , { type , payload}) =>{
-    const { id } = payload;
     console.log(payload)
     switch(type){
-        case "ADD_TO_WATCH_LATER" :
-            const isPresentInWatchLAter =  prevState.watchLater.find(video => video.id === id) 
+        case "ADD_TO_WATCHLATER" :
+            const isPresentInWatchLAter =  prevState.watchLater.find(id => id === payload.videoId) 
             if(!isPresentInWatchLAter){
-                return {...prevState , watchLater: [...(prevState.watchLater) , payload]}
+                return {...prevState , watchLater: [...(prevState.watchLater) , payload.videoId]}
             }
             return prevState;
         case "TOGGLE_LIKE": 
-            const isLiked = prevState.liked.find(video => video.id === id)
+            const isLiked = prevState.liked.find(id => id === payload.videoId)
             if(!isLiked){
-                return {...prevState , liked: [...(prevState.liked) , payload]}
+                return {...prevState , liked: [...(prevState.liked) , payload.videoId]}
             }
             else{
-                return {...prevState , liked: prevState.liked.filter(video => video.id !== id)}
+                return {...prevState , liked: prevState.liked.filter(id => id !== payload.videoId)}
             }
         case "ADD_TO_HISTORY":
-            const isPresentInHistory =  prevState.history.find(video => video.id === id)
+            const isPresentInHistory =  prevState.history.find(id => id === payload.videoId)
             if(!isPresentInHistory){
-                return { ...prevState , history: [ ...(prevState.history) , payload ]}
+                return { ...prevState , history: [ ...(prevState.history) , payload.videoId ]}
             }
             return prevState
         case "TOGGLE_VIDEO_IN_PLAYLIST": 
