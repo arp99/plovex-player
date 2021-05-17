@@ -9,7 +9,7 @@ export const Thumbnail = ( { videoId }) =>{
     const { id , title , thumbnail } = videoData
     return(
         
-        <div className="card" onClick={()=> dispatch({type: "ADD_TO_HISTORY" , payload: videoData })}>
+        <div className="card" onClick={()=> dispatch({type: "ADD_TO_HISTORY" , payload: { videoId } })}>
             <div className="card-img__container">
             <Link to ={`/v/${id}`} >
                 <img 
