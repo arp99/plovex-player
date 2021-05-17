@@ -1,3 +1,10 @@
 .video__container{
     margin-top: 7vh;
 }
+.actions-btn__container{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem 0;
+}

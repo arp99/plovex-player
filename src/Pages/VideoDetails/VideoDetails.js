@@ -1,14 +1,24 @@
 import { useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { PlaylistModal } from "../../Components"
 import { useVideos } from "../../Context"
+import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd , MdWatchLater } from "react-icons/md"
+import { IconContext } from "react-icons";
+
 import "./VideoDetails.css"
 export const VideoDetails = () =>{
     const [ showPlaylistModal , setShowPlaylistModal ] = useState(false)
     const { videoId } = useParams()
-    const { state } = useVideos()
+    const { state , dispatch } = useVideos()
     const videoData  = state.videos.find(video => video.id === videoId)
+    console.log(state.watchLater)
+
+    const isLiked = () => state.liked.find(id => id === videoId)
     const { id , title } = videoData
+    const iconStyle = {
+        color:"turquoise",
+        size:"2rem"
+    }
     return(
        <div className="video__container">
            <iframe
@@ -21,8 +31,29 @@ export const VideoDetails = () =>{
                 allowFullScreen
             ></iframe>
             <h2>{title}</h2>
-            <h3><Link to="/history" >History</Link></h3>
-            <button onClick={()=>setShowPlaylistModal(true)}>Add to Playlist</button>
+            <IconContext.Provider value={iconStyle} >
+                <div className="actions-btn__container">
+                    {
+                        isLiked() ? 
+                        (
+                            <MdFavorite 
+                                onClick={()=> dispatch({type: "TOGGLE_LIKE" , payload: { videoId }})}
+                            /> 
+                        )
+                        : 
+                        (
+                            <MdFavoriteBorder 
+                                onClick={()=> dispatch({type:"TOGGLE_LIKE" , payload: { videoId }})}
+                            />
+                        )
+                    }
+                    
+                    <MdWatchLater 
+                        onClick={()=>dispatch({type:"ADD_TO_WATCHLATER" , payload:{ videoId }})}
+                    />
+                    <MdPlaylistAdd onClick={()=>setShowPlaylistModal(true)}/>
+                </div>
+            </IconContext.Provider>
             {
                 showPlaylistModal ?(
                     <PlaylistModal 
