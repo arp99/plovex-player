@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid"
 export const reducer  = (prevState , { type , payload}) =>{
     console.log(payload)
     switch(type){
-        case "ADD_TO_WATCH_LATER" :
+        case "ADD_TO_WATCHLATER" :
             const isPresentInWatchLAter =  prevState.watchLater.find(id => id === payload.videoId) 
             if(!isPresentInWatchLAter){
                 return {...prevState , watchLater: [...(prevState.watchLater) , payload.videoId]}
