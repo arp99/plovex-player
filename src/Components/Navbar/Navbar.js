@@ -18,26 +18,31 @@ export const Navbar = () =>{
                             <Link to="/">
                                 <MdHome />
                             </Link>
+                        <small>Home</small>
                         </li>
                         <li className="list__item">
                             <Link to="/playlist">
                                 <MdPlaylistAdd />
                             </Link>
+                            <small>Playlists</small>
                         </li>
                         <li className="list__item">
                             <Link to="/watchlater">
                                 <MdWatchLater />
                             </Link>
+                            <small>Watchlater</small>
                         </li>
                         <li className="list__item">
                             <Link to="/liked">
                                 <MdFavorite />
                             </Link>
+                            <small>Likes</small>
                         </li>
                         <li className="list__item">
                             <Link to="/history">
                                 <MdHistory />
                             </Link>
+                            <small>History</small>
                         </li>
                     </ul>
                 </IconContext.Provider>
