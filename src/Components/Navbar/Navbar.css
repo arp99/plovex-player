@@ -6,7 +6,8 @@
 .navbar__container{
     background: #6cd0f8;
     width: 100vw;
-    position: relative;
+    position: fixed;
+    bottom:0;
 }
 .navbar__header{
     width: 100%;
@@ -14,8 +15,6 @@
     display: flex;
     background: inherit;
     justify-content: space-between;
-    position: fixed;
-    top:0;
     padding: 1rem;
     z-index: 3; /*Z-index works only on positioned element*/
 }
@@ -24,16 +23,13 @@
 }
 .navbar__list-items{
     background: #b5f1f1;
+    padding: 0.5rem;
     width: 100%;
-    position: fixed;
-    top:0;
-    transform: translateY(-100%);
-    transition: 0.5s;
     z-index: 2;
 }
-.show{
-    top:3.5rem;
-    transform: translateY(0);
+.list__container{
+    display: flex;
+    justify-content: space-between;
 }
 .list__item{
     list-style: none;
