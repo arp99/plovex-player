@@ -38,20 +38,26 @@ export const VideoDetails = () =>{
                         (
                             <MdFavorite 
                                 onClick={()=> dispatch({type: "TOGGLE_LIKE" , payload: { videoId }})}
+                                className="btn-action"
                             /> 
                         )
                         : 
                         (
                             <MdFavoriteBorder 
                                 onClick={()=> dispatch({type:"TOGGLE_LIKE" , payload: { videoId }})}
+                                className="btn-action"
                             />
                         )
                     }
                     
                     <MdWatchLater 
                         onClick={()=>dispatch({type:"ADD_TO_WATCHLATER" , payload:{ videoId }})}
+                        className="btn-action"
                     />
-                    <MdPlaylistAdd onClick={()=>setShowPlaylistModal(true)}/>
+                    <MdPlaylistAdd 
+                        onClick={()=>setShowPlaylistModal(true)}
+                        className="btn-action"
+                    />
                 </div>
             </IconContext.Provider>
             {
