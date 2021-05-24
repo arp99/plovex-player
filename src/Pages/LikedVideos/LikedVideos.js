@@ -1,19 +1,11 @@
 import { useVideos } from "../../Context"
-import { Link } from "react-router-dom"
-import { IconContext } from "react-icons"
-import { RiDeleteBin6Line } from "react-icons/ri";
-import "./LikedVideo.css"
+import { HorizontalVideoCard } from "../../Components";
 
 export const LikedVideos = () =>{
-    const { state , dispatch } = useVideos()
+    const { state } = useVideos()
 
     const likedVideos = state.liked.map(id => state.videos.find(video => id === video.id))
     console.log(likedVideos)
-
-    const iconStyle = {
-        color:"turquoise",
-        size:"1.5rem"
-    }
 
     return(
         <div>
@@ -25,26 +17,12 @@ export const LikedVideos = () =>{
                 {
                     likedVideos.map(({id:videoId , title , thumbnail})=>{
                         return(
-                            <div className="liked-video__container">
-                                <div className="liked-thumbnail__container" key={videoId}> 
-                                    <Link to ={`/v/${videoId}`} >
-                                        <img 
-                                            src={ thumbnail } 
-                                            alt="sample" 
-                                            className="card-img" 
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="liked-description__container">
-                                    <p>{title}</p>
-                                    <IconContext.Provider value={iconStyle} >
-                                        <RiDeleteBin6Line 
-                                            onClick={()=>dispatch({type: "TOGGLE_LIKE" , payload:{ videoId }})}
-                                            className="btn-action"
-                                        />                                    
-                                    </IconContext.Provider>
-                                </div>
-                            </div>
+                            <HorizontalVideoCard
+                                    videoId={videoId}
+                                    title={title}
+                                    thumbnail={thumbnail}
+                                    type = "TOGGLE_LIKE"
+                            />
                         )
                     })
                 }

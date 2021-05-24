@@ -1,4 +1,4 @@
-.watchlater-video__container{
+.video__container{
     width: 100vw;
     display: flex;
     justify-content: space-evenly;
@@ -6,21 +6,21 @@
     padding-left: 0.5rem;
     box-shadow: 0 2px 5px -1px #51706d;
 }
-.watchlater-thumbnail__container{
+.thumbnail__container{
     width: max-content;
     height: max-content;
 }
-.watchlater-thumbnail__container img{
+.thumbnail__container img{
     display: block;
     width: 10rem;
     height: 100%;
     margin-right: 1rem;
 }
-.watchlater-description__container{
+.video-description__container{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 }
-.watchlater-description__container p{
+.video-description__container p{
     font-size: 1.2rem;
 }

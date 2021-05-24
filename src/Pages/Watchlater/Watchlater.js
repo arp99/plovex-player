@@ -1,17 +1,10 @@
 import { useVideos } from "../../Context"
-import { Link } from "react-router-dom"
-import { IconContext } from "react-icons";
-import { RiDeleteBin6Line } from "react-icons/ri";
-import "./Watchlater.css"
+import { HorizontalVideoCard } from "../../Components";
+
 export const Watchlater = () =>{
-    const { state , dispatch } = useVideos()
+    const { state } = useVideos()
     const videoData = state.watchLater.map(id => state.videos.find(video => video.id === id))
     console.log(videoData)
-
-    const iconStyle = {
-        color:"turquoise",
-        size:"1.5rem"
-    }
 
     return(
         <div>
@@ -21,28 +14,14 @@ export const Watchlater = () =>{
             }
             <div className="watchlater-videos">
                 {
-                    videoData.map(({id:videoId , title , thumbnail , url })=>{
+                    videoData.map(({id:videoId , title , thumbnail })=>{
                         return(
-                            <div className="watchlater-video__container">
-                                <div className="watchlater-thumbnail__container" key={videoId}> 
-                                    <Link to ={`/v/${videoId}`} >
-                                        <img 
-                                            src={ thumbnail } 
-                                            alt="sample" 
-                                            className="card-img" 
-                                        />
-                                    </Link>
-                                </div>
-                                <div className="watchlater-description__container">
-                                    <p>{title}</p>
-                                    <IconContext.Provider value={iconStyle} >
-                                        <RiDeleteBin6Line 
-                                            onClick={()=>dispatch({type: "REMOVE_FROM_WATCHLATER" , payload:{ videoId }})}
-                                            className="btn-action"
-                                        />                                    
-                                    </IconContext.Provider>
-                                </div>
-                            </div>
+                            <HorizontalVideoCard 
+                                videoId={videoId}
+                                title={title}
+                                thumbnail={thumbnail}
+                                type="REMOVE_FROM_WATCHLATER"
+                            />
                         )
                     })
                 }
