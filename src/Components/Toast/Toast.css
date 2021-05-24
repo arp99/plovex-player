@@ -1,0 +1,31 @@
+.toast__container{
+    min-width: 15rem;
+    width: max-content;
+    padding: 0.5rem;
+    background: #40e0d0;
+    color: #f7f7f7;
+    letter-spacing: 0.1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px -2px #40e0d0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+}
+.toast__container.show{
+    visibility: visible;
+    animation: fadein 0.5s , fadeout 0.5s 2.5s;
+}
+@keyframes fadein{
+    from{bottom: 0;opacity: 0;}
+    to{bottom: 5rem; opacity: 1;}
+}
+@keyframes fadeout{
+    from{bottom: 5rem; opacity: 1;}
+    to{bottom: 0rem;opacity: 0;}
+}
