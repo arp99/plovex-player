@@ -2,7 +2,8 @@ import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { PlaylistModal , Toast } from "../../Components"
 import { useVideos } from "../../Context"
-import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd , MdWatchLater } from "react-icons/md"
+import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd } from "react-icons/md"
+import { IoTimeOutline , IoTimeSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
 
 import "./VideoDetails.css"
@@ -65,14 +66,14 @@ export const VideoDetails = () =>{
                     {
                         isInWatchlater() ?
                         (
-                            <MdWatchLater 
+                            <IoTimeSharp 
                                 onClick={()=> actionBtnClickHandler("REMOVE_FROM_WATCHLATER" , "Removed From Watchlater")}
                                 className="btn-action"
                             />        
                         )
                         :
                         (
-                            <MdWatchLater 
+                            <IoTimeOutline 
                                 onClick={()=> actionBtnClickHandler("ADD_TO_WATCHLATER" , "Added To Watchlater")}
                             className="btn-action"
                             />
