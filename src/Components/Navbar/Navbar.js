@@ -33,7 +33,7 @@ export const Navbar = () =>{
                             <small>Watchlater</small>
                         </li>
                         <li className="list__item">
-                            <Link to="/liked">
+                            <Link to="/liked-videos">
                                 <MdFavorite />
                             </Link>
                             <small>Likes</small>
