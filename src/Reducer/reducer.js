@@ -25,6 +25,8 @@ export const reducer  = (prevState , { type , payload}) =>{
                 return { ...prevState , history: [ ...(prevState.history) , payload.videoId ]}
             }
             return prevState
+        case "REMOVE_FROM_HISTORY":
+            return { ...prevState , history: prevState.history.filter(id => id !== payload.videoId)}
         case "TOGGLE_VIDEO_IN_PLAYLIST": 
                 return{
                     ...prevState ,
