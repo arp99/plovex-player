@@ -10,7 +10,7 @@ export const reducer  = (prevState , { type , payload}) =>{
             }
             return prevState;
         case "REMOVE_FROM_WATCHLATER" :
-            return {...prevState , watchLater : prevState.liked.filter(id => id !== payload.videoId)}
+            return {...prevState , watchLater : prevState.watchLater.filter(id => id !== payload.videoId)}
         case "TOGGLE_LIKE": 
             const isLiked = prevState.liked.find(id => id === payload.videoId)
             if(!isLiked){
