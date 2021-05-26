@@ -64,6 +64,7 @@ export const reducer  = (prevState , { type , payload}) =>{
                         }
                     })
                 }
+        case "UPDATE_SEARCH_TEXT": return payload.searchStr ;
         default: break;
     }
 }

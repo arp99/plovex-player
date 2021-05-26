@@ -1,0 +1,22 @@
+.searchBox__container{
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: max-content;
+    background: #ecf7fa;
+    padding: 0.5rem 0;
+}
+.searchBox {
+    padding: 0.5rem;
+    border: 1px solid #439d94;
+    border-radius: 0.5rem;
+    outline: none;
+    width: 60%;
+    letter-spacing: 0.1rem;
+    color: #1f534e;
+    transition: 0.5s;
+}
+.searchBox:focus{
+    box-shadow: 0 0 1px 2px #88faef;
+}
