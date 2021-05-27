@@ -2,11 +2,15 @@
     position: fixed;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    align-items: center;
     height: max-content;
     background: #ecf7fa;
     padding: 0.5rem 0;
     transition: 0.2s;
+}
+.dark_SearchBox{
+    background: #4c5f7a;
 }
 .hidden{
     transform: translateY(-100%);

@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { useSearchData } from "../../Context"
+import { useSearchData, useTheme } from "../../Context"
+import { DarkModeToggler } from "../DarkModeToggler/DarkModeToggler"
 import searchBarStyle from "./SearchBar.module.css"
 export const SearchBar = () =>{
     const { searchStr , setSearchStr } = useSearchData()
     const [ prevScrollPos , setPrevScrollPos ] = useState(0)
     const [ visible , setVisible ] = useState(true)
-
+    const { theme } = useTheme()
     useEffect(()=>{
         const handleScroll = () =>{
             //find current scroll position
@@ -20,8 +21,25 @@ export const SearchBar = () =>{
             window.removeEventListener('scroll', handleScroll)
         }
     },[visible , prevScrollPos ])
+    
+    const getThemeClassName = ()=>{
+        return theme === "dark" 
+                ? 
+                `${searchBarStyle.dark_SearchBox}`
+                :
+                ``
+    }
+
     return(
-        <div className={visible?`${searchBarStyle.searchBox__container}`: `${searchBarStyle.searchBox__container} ${searchBarStyle.hidden}`}>
+        <div 
+            className={
+                    visible
+                    ?
+                    `${searchBarStyle.searchBox__container}  ${getThemeClassName()}`                     
+                    : 
+                    `${getThemeClassName()} ${searchBarStyle.hidden}`
+                    }
+            >
             <input 
                 value={searchStr}
                 placeholder={"Search Videos?"}
@@ -35,6 +53,7 @@ export const SearchBar = () =>{
                 }
                 className={searchBarStyle.searchBox}
             />
+            <DarkModeToggler />
         </div>
     )
 }

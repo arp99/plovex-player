@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter as Router } from "react-router-dom"
 import App from './App';
-import { Videosprovider , SearchDataProvider } from "./Context"
+import { Videosprovider , SearchDataProvider , ThemeProvider } from "./Context"
 
 
 ReactDOM.render(
@@ -11,7 +11,9 @@ ReactDOM.render(
     <Router>
       <SearchDataProvider >
         <Videosprovider>
-          <App />
+          <ThemeProvider >
+            <App />
+          </ThemeProvider>
         </Videosprovider>
       </SearchDataProvider>
     </Router>
