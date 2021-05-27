@@ -6,6 +6,10 @@
     height: max-content;
     background: #ecf7fa;
     padding: 0.5rem 0;
+    transition: 0.2s;
+}
+.hidden{
+    transform: translateY(-100%);
 }
 .searchBox {
     padding: 0.5rem;
