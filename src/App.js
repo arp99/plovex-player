@@ -2,10 +2,12 @@ import { Navbar } from "./Components"
 import { Routes , Route } from "react-router-dom"
 import './App.css';
 import { History, VideoDetails, Videolisting, Watchlater, Playlist, LikedVideos } from "./Pages";
+import { useTheme } from "./Context";
 
 function App() {
+  const { theme } = useTheme()
   return (
-    <div className="App">
+    <div className={theme === "dark"?`App App_dark`:`App`}>
       <Navbar />
       <Routes>
         <Route path="/"  element={<Videolisting />}/>

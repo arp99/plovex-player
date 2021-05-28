@@ -31,7 +31,8 @@
     transition: 0.2s;
 }
 .dark_navbar{
-    background: #4c5f7a;
+    /* background: #4c5f7a; */
+    background: var(--dark_bg3);
 }
 .list__container{
     display: flex;

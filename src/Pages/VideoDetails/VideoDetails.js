@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { PlaylistModal , Toast } from "../../Components"
-import { useVideos } from "../../Context"
+import { useTheme, useVideos } from "../../Context"
 import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd } from "react-icons/md"
 import { IoTimeOutline , IoTimeSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
@@ -19,15 +19,28 @@ export const VideoDetails = () =>{
     const isInWatchlater = () => state.watchLater.find(id => id === videoId)
 
     const { id , title } = videoData
-    const iconStyle = {
-        color:"turquoise",
-        size:"2rem"
-    }
     const [toastMsg , setToastMsg] = useState("")
     const actionBtnClickHandler = ( type , msg) =>{
         setToggleToast(true)
         setToastMsg( msg )
         dispatch({type , payload:{ videoId }})
+    }
+
+    const { theme } = useTheme()
+    const iconStyle = {
+        color:"turquoise",
+        size:"2rem"
+    }
+    const darkIconStyle = {
+        color:"#7a9fba",
+        size:"2rem"
+    }
+    const getIconStyle = () =>{
+        return theme === "dark"
+            ?
+            darkIconStyle
+            :
+            iconStyle
     }
     return(
         <>
@@ -45,7 +58,7 @@ export const VideoDetails = () =>{
                 allowFullScreen
             ></iframe>
             <h2>{title}</h2>
-            <IconContext.Provider value={iconStyle} >
+            <IconContext.Provider value={getIconStyle()} >
                 <div className="actions-btn__container">
                     {
                         isLiked() ? 

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import { Thumbnail, SearchBar } from "../../Components"
-import { useSearchData, useVideos } from "../../Context"
-import "./Videolisting.css"
+import { useSearchData, useTheme, useVideos } from "../../Context"
+import VideolistingStyle from "./Videolisting.module.css"
 export const Videolisting = () =>{
     const { state } = useVideos()
     const { videos } = state
     const { searchStr } = useSearchData()
     const [ filteredVideos , setFilterVideos ] = useState(videos)
-
+    const { theme } = useTheme()
     useEffect(()=>{
         setFilterVideos(()=> 
                 videos.filter(video => 
@@ -15,10 +15,18 @@ export const Videolisting = () =>{
                 )
         )
     },[ searchStr , videos ])
+
+    const getDarkThemedVideoContainer = () =>{
+        return theme === "dark"
+                ?
+                `${VideolistingStyle.dark_videos__container}`
+                :
+                ``
+    }
     return(
         <>
             <SearchBar />
-            <div className="videos__container">
+            <div className={`${VideolistingStyle.videos__container} ${getDarkThemedVideoContainer()}`}>
                 {
                     filteredVideos.map(({ id }) =>{
                         return(

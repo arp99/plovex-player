@@ -3,9 +3,20 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root{
+  --dark_bg1: #17202a;
+  --dark_bg2: #1c2733;
+  --dark_bg3: #25303b;
+  --light_color1: #ffffff;
+  --light_color2: #8b98a5;
+}
 .App{
   width: 100vw;
   min-height:100vh;
   display: flex;
   flex-direction: column;
+}
+.App_dark{
+  background: var(--dark_bg1);
+  color: var(--light_color2);
 }

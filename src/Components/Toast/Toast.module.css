@@ -18,6 +18,11 @@
     transform: translateX(-50%);
     z-index: 0;
 }
+.dark_toast__container{
+    background: var(--dark_bg3);
+    color: var(--light_color2);
+    box-shadow: 0 4px 8px -2px var(--light_color2);
+}
 .toast__container.show{
     visibility: visible;
     animation: fadein 0.5s , fadeout 0.5s 2.5s;
