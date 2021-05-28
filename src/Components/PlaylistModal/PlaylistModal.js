@@ -1,11 +1,12 @@
 import { useRef, useState } from "react"
-import { useVideos } from "../../Context"
-import "./PlaylistModal.css"
+import { useTheme, useVideos } from "../../Context"
+import PlaylistStyle from "./PlaylistModal.module.css"
 export const PlaylistModal = ({ showModal , videoId }) =>{
     const [ state , setState] = useState(false)
     const { state : videosState , dispatch } = useVideos()
     const { playlist } = videosState
     const playlistInput = useRef(null)
+    const { theme } = useTheme()
     const playlistCreateHandler = ()=>{
         const playlistName = playlistInput.current.value.trim()
         console.log(playlistName)
@@ -24,21 +25,46 @@ export const PlaylistModal = ({ showModal , videoId }) =>{
         // return false
     }
     return(
-        <div className="playlistmodal__container">
-            <div className="modal__header">
-                <small id="heading">Save to...</small>
+        <div 
+            className={
+                theme === "dark"
+                ?
+                `${PlaylistStyle.playlistmodal__container} ${PlaylistStyle.dark_playlistmodal}`
+                :
+                `${PlaylistStyle.playlistmodal__container}`
+            }
+        >
+            <div 
+                className={
+                    theme === "dark"
+                    ?
+                    `${PlaylistStyle.modal__header} ${PlaylistStyle.dark_modal__header}`
+                    :
+                    `${PlaylistStyle.modal__header}`
+                }
+            >
+                <small id={`${PlaylistStyle.heading}`}>Save to...</small>
                 <small 
-                    id="close"
+                    id={`${PlaylistStyle.close}`}
                     onClick={()=>showModal(false)}
                 >
                     X
                 </small>
             </div>
-            <div className="playlists__container">
+            <div className={`${PlaylistStyle.playlists__container}`}>
             {
                 playlist.map(({playlistId , name}) =>{
                     return(
-                        <div className="input_group" key={playlistId} >
+                        <div 
+                            key={playlistId}
+                            className={
+                                theme === "dark"
+                                ?
+                                `${PlaylistStyle.input_group} ${PlaylistStyle.dark_input_group}`
+                                :
+                                `${PlaylistStyle.input_group}`
+                            }
+                        >
                             <input 
                                 type="checkbox" 
                                 id={playlistId} 
@@ -53,23 +79,51 @@ export const PlaylistModal = ({ showModal , videoId }) =>{
             </div>
             {
                 state?(
-                    <div className="modal__footer create-playlist">
+                    <div 
+                        className={
+                            theme === "dark"
+                            ?
+                            `${PlaylistStyle.modal__footer} ${PlaylistStyle.dark_modal__footer} ${PlaylistStyle['create-playlist']}`
+                            :
+                            `${PlaylistStyle.modal__footer} ${PlaylistStyle['create-playlist']}`
+                        }
+                    >
                         <input 
                             type="text" 
                             placeholder= "Name" 
                             ref={playlistInput}
+                            className={
+                                theme === "dark"
+                                ?
+                                `${PlaylistStyle.playlist_input} ${PlaylistStyle.dark_input}`
+                                :
+                                `${PlaylistStyle.playlist_input}`
+                            }
                         />
                         <button 
-                            className="btn"
+                            className={
+                                theme === "dark"
+                                ?    
+                                `${PlaylistStyle.btn} ${PlaylistStyle.dark_btn}`
+                                :
+                                `${PlaylistStyle.btn}`
+                            }
                             onClick={playlistCreateHandler}
                         >
                             Create
                         </button>
                     </div>
                 ):(
-                    <div className="modal__footer">
-                        <small id="create" onClick={()=>setState(true)}>+</small>
-                        <small id="footer">Create New</small>
+                    <div className={
+                            theme === "dark"
+                            ?
+                            `${PlaylistStyle.modal__footer} ${PlaylistStyle.dark_modal__footer}`
+                            :
+                            `${PlaylistStyle.modal__footer}`
+                        }
+                    >
+                        <small id={`${PlaylistStyle.create}`} onClick={()=>setState(true)}>+</small>
+                        <small id={`${PlaylistStyle.footer}`}>Create New</small>
                     </div>
                 )
             }
