@@ -28,21 +28,36 @@ export const Videolisting = () =>{
     return(
         <>
             {
-                filteredVideos.length === 0
+                videos.length === 0
                 ? 
                 <Loading />
                 :
                 <>
                     <SearchBar />
-                    <div className={`${VideolistingStyle.videos__container} ${getDarkThemedVideoContainer()}`}>
-                        {
-                            filteredVideos.map(video =>{
-                                return(
-                                    <Thumbnail key={video._id} videoData={video} />
-                                )
-                            })
-                        }
-                    </div>
+                    {
+                        filteredVideos.length === 0
+                        ?
+                        <small 
+                            style={{
+                                    position:"fixed" , 
+                                    top:"30%" , 
+                                    left:"50%" , 
+                                    transform : "translate(-50%,-30%)"
+                                }}
+                        >
+                            No videos found
+                        </small>
+                        :
+                        <div className={`${VideolistingStyle.videos__container} ${getDarkThemedVideoContainer()}`}>
+                            {
+                                filteredVideos.map(video =>{
+                                    return(
+                                        <Thumbnail key={video._id} videoData={video} />
+                                    )
+                                })
+                            }
+                        </div>
+                    }
                 </>
             }
         </>
