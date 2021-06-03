@@ -1,29 +1,52 @@
 import { useRef, useState } from "react"
 import { useTheme, useVideos } from "../../Context"
 import PlaylistStyle from "./PlaylistModal.module.css"
-export const PlaylistModal = ({ showModal , videoId }) =>{
+import axios from "axios"
+
+export const PlaylistModal = ({ showModal , videoData }) =>{
     const [ state , setState] = useState(false)
     const { state : videosState , dispatch } = useVideos()
     const { playlist } = videosState
     const playlistInput = useRef(null)
     const { theme } = useTheme()
-    const playlistCreateHandler = ()=>{
-        const playlistName = playlistInput.current.value.trim()
-        console.log(playlistName)
-        if (playlistName !== ""){
-            dispatch({
-                type:"CREATE_PLAYLIST",
-                payload:{playlistName , videoId }
-            })
-            setState(false)
-        }
+    console.log("playlistState: ", playlist)    
+    const playlistCreateHandler = async()=>{
+            const playlistName = playlistInput.current.value
+            if(playlistName !== ""){
+                try{
+                    const response = await axios.post('https://plovex-player-backend.herokuapp.com/playlists',{
+                        playlistName, 
+                        videos : [videoData._id] 
+                    })
+                    const { createdPlaylist } = response.data ;
+                    dispatch({
+                        type:"CREATE_PLAYLIST",
+                        payload:{ playlistName : createdPlaylist.playlistName , playlistId : createdPlaylist._id, videoData }
+                    })
+                }catch(err){
+                    console.error(err.message)
+                }
+                setState(false)
+            }
     }
     const isVideoInPlaylist = playlistId =>{
-        const playlistToSearch = playlist.find(playlist => playlist.playlistId === playlistId)
-        // if(playlistToSearch)
-        return playlistToSearch.videos.find(id => id === videoId)
-        // return false
+        const playlistToSearch = playlist.find(playlist => playlist._id === playlistId)
+        const isVideoPresent =  playlistToSearch.videos.find(video => video.videoId === videoData.videoId )
+        return isVideoPresent ? true : false
     }
+
+    const toggleVideoInPlaylist = async ( playlistId ) =>{
+        try{
+            const response = await axios.post(`https://plovex-player-backend.herokuapp.com/playlists/${ playlistId }`,{
+                videoId : videoData._id
+            })
+            dispatch({type : "TOGGLE_VIDEO_IN_PLAYLIST" , payload: { playlistId , videoData }})
+            console.log(response)
+        }catch(err){
+            console.error(err.message)
+        }
+    }
+
     return(
         <div 
             className={
@@ -53,10 +76,10 @@ export const PlaylistModal = ({ showModal , videoId }) =>{
             </div>
             <div className={`${PlaylistStyle.playlists__container}`}>
             {
-                playlist.map(({playlistId , name}) =>{
+                playlist.map(({_id : playlistId , playlistName}) =>{
                     return(
                         <div 
-                            key={playlistId}
+                            key={ playlistId }
                             className={
                                 theme === "dark"
                                 ?
@@ -67,11 +90,11 @@ export const PlaylistModal = ({ showModal , videoId }) =>{
                         >
                             <input 
                                 type="checkbox" 
-                                id={playlistId} 
+                                id={ playlistId } 
                                 checked={isVideoInPlaylist(playlistId)}
-                                onChange={()=>dispatch({type : "TOGGLE_VIDEO_IN_PLAYLIST" , payload: {playlistId , videoId}})}
+                                onChange={()=> toggleVideoInPlaylist(playlistId) }
                             />
-                            <label htmlFor={playlistId}> {name} </label>
+                            <label htmlFor={playlistId}> { playlistName } </label>
                         </div>  
                     )
                 })

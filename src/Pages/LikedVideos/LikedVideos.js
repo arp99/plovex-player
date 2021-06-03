@@ -1,32 +1,37 @@
 import { useVideos } from "../../Context"
-import { HorizontalVideoCard } from "../../Components";
+import { HorizontalVideoCard , Loading} from "../../Components";
 
 export const LikedVideos = () =>{
     const { state } = useVideos()
 
-    const likedVideos = state.liked.map(id => state.videos.find(video => id === video.id))
-    console.log(likedVideos)
+    const likedVideos = state.liked
+    console.log("Liked videos:" ,likedVideos)
 
     return(
         <div>
             <h1>Liked Videos</h1>
             {
-                likedVideos.length === 0 ? <small>No Liked Videos</small>:null
-            }
-            <div className="liked-videos">
-                {
-                    likedVideos.map(({id:videoId , title , thumbnail})=>{
-                        return(
-                            <HorizontalVideoCard
-                                    videoId={videoId}
-                                    title={title}
-                                    thumbnail={thumbnail}
+                state.videos.length === 0
+                ?
+                <Loading />
+                :
+                likedVideos.length === 0 ? <small>No Liked Videos</small>
+                :
+                <div className="liked-videos">
+                    {
+                        likedVideos.map( video =>{
+                            return(
+                                <HorizontalVideoCard
+                                    key = { video._id }    
+                                    videoData = { video }
                                     type = "TOGGLE_LIKE"
-                            />
-                        )
-                    })
-                }
-            </div>
+                                    url = 'https://plovex-player-backend.herokuapp.com/liked-videos'
+                                />
+                            )
+                        })
+                    }
+                </div>
+            }
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Thumbnail, SearchBar } from "../../Components"
+import { Loading , Thumbnail, SearchBar } from "../../Components"
 import { useSearchData, useTheme, useVideos } from "../../Context"
 import VideolistingStyle from "./Videolisting.module.css"
 export const Videolisting = () =>{
@@ -8,6 +8,7 @@ export const Videolisting = () =>{
     const { searchStr } = useSearchData()
     const [ filteredVideos , setFilterVideos ] = useState(videos)
     const { theme } = useTheme()
+    console.log(videos)
     useEffect(()=>{
         setFilterVideos(()=> 
                 videos.filter(video => 
@@ -23,18 +24,27 @@ export const Videolisting = () =>{
                 :
                 ``
     }
+    console.log("Filtered videos: ", filteredVideos)
     return(
         <>
-            <SearchBar />
-            <div className={`${VideolistingStyle.videos__container} ${getDarkThemedVideoContainer()}`}>
-                {
-                    filteredVideos.map(({ id }) =>{
-                        return(
-                            <Thumbnail key={id} videoId={id} />
-                        )
-                    })
-                }
-            </div>
+            {
+                filteredVideos.length === 0
+                ? 
+                <Loading />
+                :
+                <>
+                    <SearchBar />
+                    <div className={`${VideolistingStyle.videos__container} ${getDarkThemedVideoContainer()}`}>
+                        {
+                            filteredVideos.map(video =>{
+                                return(
+                                    <Thumbnail key={video._id} videoData={video} />
+                                )
+                            })
+                        }
+                    </div>
+                </>
+            }
         </>
     )
 }

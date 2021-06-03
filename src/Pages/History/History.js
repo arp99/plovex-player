@@ -1,29 +1,35 @@
 import { useVideos } from "../../Context"
-import { HorizontalVideoCard } from "../../Components";
+import { HorizontalVideoCard , Loading } from "../../Components";
 
 export const History  = () =>{
     const { state } = useVideos()
-    const historyData = state.history.map(id => state.videos.find(video => video.id === id))
+    const historyData = state.history
+    console.log("history data: " , historyData)
     return(
         <div>
             <h1>History</h1>
             {
-                historyData.length === 0 ? <small>Nothing in Watch History.</small>:null
+                state.videos.length === 0 
+                ?
+                <Loading />
+                :
+                historyData.length === 0 ? <small>Nothing in Watch History.</small>
+                :
+                <div className="history-videos">
+                    {
+                        historyData.map( video =>{
+                            return(
+                                <HorizontalVideoCard 
+                                    videoData = { video }
+                                    key = { video._id }
+                                    type= "REMOVE_FROM_HISTORY"
+                                    url="https://plovex-player-backend.herokuapp.com/history"
+                                />
+                            )
+                        })
+                    }
+                </div>
             }
-            <div className="history-videos">
-                {
-                    historyData.map(({id:videoId , title , thumbnail})=>{
-                        return(
-                            <HorizontalVideoCard 
-                                videoId={videoId}
-                                title={title}
-                                thumbnail={thumbnail}
-                                type= "REMOVE_FROM_HISTORY"
-                            />
-                        )
-                    })
-                }
-            </div>
         </div>
     )
 }

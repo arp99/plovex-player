@@ -1,8 +1,8 @@
 import { createContext, useContext, useReducer } from "react";
 import { reducer } from "../Reducer/reducer"
-import { videos } from "../Video-DB/VideoDb"
+
 const initialState = {
-    videos : videos,
+    videos : [],
     watchLater:[],
     liked: [],
     history:[],
