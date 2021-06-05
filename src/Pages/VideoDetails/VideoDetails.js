@@ -1,10 +1,12 @@
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import { Loading , PlaylistModal , Toast } from "../../Components"
-import { useTheme, useVideos } from "../../Context"
+import { useVideos } from "../../Context"
 import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd } from "react-icons/md"
 import { IoTimeOutline , IoTimeSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import { IconStyle } from "../../Utilities"
+
 import axios from "axios"
 
 import "./VideoDetails.css"
@@ -26,23 +28,6 @@ export const VideoDetails = () =>{
         setToggleToast(true)
         setToastMsg( msg )
         dispatch({type , payload:{ videoData }})
-    }
-
-    const { theme } = useTheme()
-    const iconStyle = {
-        color:"turquoise",
-        size:"2rem"
-    }
-    const darkIconStyle = {
-        color:"#7a9fba",
-        size:"2rem"
-    }
-    const getIconStyle = () =>{
-        return theme === "dark"
-            ?
-            darkIconStyle
-            :
-            iconStyle
     }
 
     const addToLikes = async () =>{
@@ -112,7 +97,7 @@ export const VideoDetails = () =>{
                 allowFullScreen
             ></iframe>
             <h2>{videoData.title}</h2>
-            <IconContext.Provider value={getIconStyle()} >
+            <IconContext.Provider value={IconStyle()} >
                 <div className="actions-btn__container">
                     {
                         isLiked() ? 

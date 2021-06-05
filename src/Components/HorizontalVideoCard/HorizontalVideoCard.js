@@ -1,31 +1,14 @@
 import { Link } from "react-router-dom"
 import { IconContext } from "react-icons"
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { useTheme, useVideos } from "../../Context";
+import { useVideos } from "../../Context";
+import { IconStyle } from "../../Utilities"
 import VideoCardStyle from "./HorizontalVideoCard.module.css"
 
 import axios from "axios"
 
 export const HorizontalVideoCard = ({ videoData , type , url }) =>{
     const { dispatch } = useVideos()
-    const { theme } = useTheme()
-
-
-    const iconStyle = {
-        color:"turquoise",
-        size:"2rem"
-    }
-    const darkIconStyle = {
-        color:"#7a9fba",
-        size:"2rem"
-    }
-    const getIconStyle = () =>{
-        return theme === "dark"
-            ?
-            darkIconStyle
-            :
-            iconStyle
-    }
     // console.log("VideoData: " , videoData['0'])
     const deleteHistoryHandler = async () =>{
         try{
@@ -85,7 +68,7 @@ export const HorizontalVideoCard = ({ videoData , type , url }) =>{
             </div>
             <div className={VideoCardStyle['video-description__container']}>
                 <p>{ videoData.title }</p>
-                <IconContext.Provider value={getIconStyle()} >
+                <IconContext.Provider value={ IconStyle() } >
                     <RiDeleteBin6Line 
                         onClick={removeVideoHandler}
                         className="btn-action"

@@ -1,0 +1,1 @@
+export { IconStyle } from "./IconStyles"
