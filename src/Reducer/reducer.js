@@ -3,10 +3,14 @@
 export const reducer  = (prevState , { type , payload}) =>{
     console.log(payload)
     switch(type){
-        case "LOAD_VIDEOS":
-            return { ...prevState , videos : [...payload.videos]}
-        case "LOAD_WATCHLATER" : 
-            return { ...prevState , watchLater : [...payload.watchlater]}
+        case "LOAD_DATA" : 
+            return { 
+                    videos : [ ...payload.videos] , 
+                    watchLater : [...payload.watchlater],
+                    liked : [...payload.likes],
+                    history : [...payload.history],
+                    playlist : [ ...payload.playlists ]
+            }
         case "ADD_TO_WATCHLATER" :
             const isPresentInWatchLAter =  prevState.watchLater.find(video => video.videoId === payload.videoData.videoId) 
             if(!isPresentInWatchLAter){
@@ -15,8 +19,6 @@ export const reducer  = (prevState , { type , payload}) =>{
             return prevState;
         case "REMOVE_FROM_WATCHLATER" :
             return {...prevState , watchLater : prevState.watchLater.filter(video => video.videoId !== payload.videoData.videoId)}
-        case "LOAD_LIKES" :
-            return { ...prevState , liked: [...payload.likes] }
         case "TOGGLE_LIKE": 
             const { videoData } = payload
             const isLiked = prevState.liked.find(video => video.videoId === videoData.videoId)
@@ -26,10 +28,7 @@ export const reducer  = (prevState , { type , payload}) =>{
             else{
                 return {...prevState , liked: prevState.liked.filter(video => video.videoId !== videoData.videoId)}
             }
-        case "LOAD_HISTORY":
-            return { ...prevState , history : [ ...(payload.history)]}
         case "ADD_TO_HISTORY":
-            //how can u destructure an array like this ?
             const { videoId } = payload.videoData
             console.log("payload videoData: " , payload.history)
             const isPresentInHistory =  prevState.history.find(video => video.videoId === videoId)
@@ -39,8 +38,6 @@ export const reducer  = (prevState , { type , payload}) =>{
             return prevState
         case "REMOVE_FROM_HISTORY":
             return { ...prevState , history: prevState.history.filter(video => video.videoId !== payload.videoId)}
-        case "LOAD_PLAYLISTS":
-            return { ...prevState , playlist : [ ...payload.playlists ]}
         case "TOGGLE_VIDEO_IN_PLAYLIST": 
                 return{
                     ...prevState ,

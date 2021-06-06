@@ -13,31 +13,29 @@ function App() {
     (
       async function(){
         try{
-          const videos = await axios.get('https://plovex-player-backend.herokuapp.com/videos')
-          const watchlater = await axios.get('https://plovex-player-backend.herokuapp.com/watchlater')
-          const likes = await axios.get('https://plovex-player-backend.herokuapp.com/liked-videos')
-          const playlists = await axios.get('https://plovex-player-backend.herokuapp.com/playlists')
-          const history = await axios.get('https://plovex-player-backend.herokuapp.com/history')
-          console.log("video-data: ", videos)
+          const [
+            videos,
+            watchlater,
+            likes,
+            playlists,
+            history
+          ] = await Promise.all([
+            axios.get('https://plovex-player-backend.herokuapp.com/videos'),
+            axios.get('https://plovex-player-backend.herokuapp.com/watchlater'),
+            axios.get('https://plovex-player-backend.herokuapp.com/liked-videos'),
+            axios.get('https://plovex-player-backend.herokuapp.com/playlists'),
+            axios.get('https://plovex-player-backend.herokuapp.com/history')
+          ]);
+      
           dispatch({
-            type: "LOAD_VIDEOS",
-            payload: {videos: videos.data.videoData }
-          })
-          dispatch({ 
-            type : "LOAD_WATCHLATER" , 
-            payload : { watchlater : watchlater.data.watchlaterVideos }
-          })
-          dispatch({ 
-            type: "LOAD_LIKES" , 
-            payload: { likes : likes.data.likedVideos }
-          })
-          dispatch({
-            type : "LOAD_PLAYLISTS" ,  
-            payload : { playlists: playlists.data.playlistData }
-          })
-          dispatch({ 
-            type : "LOAD_HISTORY" , 
-            payload : { history : history.data.history }
+            type : "LOAD_DATA" ,
+            payload : {
+              videos :  videos.data.videoData,
+              watchlater : watchlater.data.watchlaterVideos,
+              likes : likes.data.likedVideos,
+              playlists: playlists.data.playlistData,
+              history : history.data.history
+            }
           })
         }catch(err){
           console.log(err)
