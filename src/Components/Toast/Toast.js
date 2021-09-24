@@ -5,7 +5,6 @@ import ToastStyle from "./Toast.module.css"
 export const Toast = ({ toastMsg , setToggleToast }) =>{
     const [ showToast , setShowToast ] = useState(false)
     const { theme } = useTheme()
-    console.log(toastMsg)
     useEffect(()=>{
         setShowToast(true)
         setTimeout(()=>{

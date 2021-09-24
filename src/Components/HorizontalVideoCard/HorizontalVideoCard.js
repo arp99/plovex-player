@@ -9,7 +9,6 @@ import axios from "axios"
 
 export const HorizontalVideoCard = ({ videoData , type , url }) =>{
     const { dispatch } = useVideos()
-    // console.log("VideoData: " , videoData['0'])
     const deleteHistoryHandler = async () =>{
         try{
             const response = await axios.delete(url ,{
@@ -19,27 +18,25 @@ export const HorizontalVideoCard = ({ videoData , type , url }) =>{
                 dispatch({type, payload:{ videoId : videoData.videoId }})
             }
         }catch(err){
-            console.log("Problem in deleting from history: ", err.message)
+            console.error("Problem in deleting from history: ", err.message)
         }
     }
     const removeFromLikes = async () =>{
         try{
-            const response = await axios.delete(url,{
+            await axios.delete(url,{
                 data: { _id : videoData._id }
             })
             dispatch({ type ,payload: { videoData }})
-            console.log(response)
         }catch(err){
             console.error(err.message)
         }
     }
     const removeFromWatchlater = async () =>{
         try{
-            const response = await axios.delete(url,{
+            await axios.delete(url,{
                 data: { _id : videoData._id }
             })
             dispatch({ type: "REMOVE_FROM_WATCHLATER" , payload : { videoData }})
-            console.log("Remove from watchLater: ",response)
         }catch(err){
             console.error(err.message)
         }
@@ -55,6 +52,8 @@ export const HorizontalVideoCard = ({ videoData , type , url }) =>{
             default: break
         }
     }
+    const truncateStr = str => str.length > 40 ? `${str.substring(0, 40)}...` : str;
+
     return(
         <div className={VideoCardStyle.video__container}>
             <div className={VideoCardStyle.thumbnail__container}>
@@ -67,7 +66,7 @@ export const HorizontalVideoCard = ({ videoData , type , url }) =>{
                 </Link>               
             </div>
             <div className={VideoCardStyle['video-description__container']}>
-                <p>{ videoData.title }</p>
+                <p>{ truncateStr(videoData.title) }</p>
                 <IconContext.Provider value={ IconStyle() } >
                     <RiDeleteBin6Line 
                         onClick={removeVideoHandler}

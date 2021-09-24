@@ -2,7 +2,7 @@
     width: 70%;
     background: #fff;
     max-width: 30rem;
-    box-shadow: 0 8px 8px -2px #bbdfdf;
+    box-shadow: 0 8px 8px -2px var(--light_bg1);
     position: fixed;
     top: 40%;
     left: 50%;
@@ -19,7 +19,7 @@
     justify-content: space-between;
     align-items: baseline;
     padding: 0.5rem 1rem;
-    border-bottom: 2px solid #5bd8d8;
+    border-bottom: 2px solid var(--light_bg2);
 }
 .dark_modal__header{
     border-bottom: 2px solid var(--light_color2);
@@ -34,7 +34,7 @@
     cursor: pointer;
 }
 .modal__header #close:hover {
-    box-shadow: 0 6px 8px -2px #5bd8d8;
+    box-shadow: 0 6px 8px -2px var(--light_bg2);
     color: #f85974;
 }.dark_modal__header #close:hover{
     box-shadow: 0 6px 8px -2px var(--light_color2);
@@ -47,7 +47,7 @@
 .input_group{
     padding:0.5rem 1rem;
     display: flex;
-    border-bottom: 1px solid #5bd8d8;
+    border-bottom: 1px solid var(--light_bg2);
 }
 .dark_input_group{
     border-bottom: 1px solid var(--light_color2);
@@ -63,7 +63,7 @@
     width: 100%;
     align-items: baseline;
     padding: 0.5rem 1rem;
-    border-top: 2px solid #5bd8d8;
+    border-top: 2px solid var(--light_bg2);
 }
 .dark_modal__footer{
     border-top: 2px solid var(--light_color2);
@@ -79,7 +79,7 @@
     cursor: pointer;
 }
 .modal__footer #create:hover{
-    box-shadow: 0 6px 8px -2px #5bd8d8;
+    box-shadow: 0 6px 8px -2px var(--light_bg2);
     color: #f85974;
 }
 .dark_modal__footer #create:hover{
@@ -94,7 +94,7 @@
     width: 100%;
     padding: 0.5rem;
     border: none;
-    border-bottom: 2px solid #5bd8d8;
+    border-bottom: 2px solid var(--light_bg2);
     border-radius: 0.2rem;
     margin-bottom: 0.5rem;
     outline: none;
@@ -109,15 +109,15 @@
 }
 .playlist_input:focus{
     border: none;
-    box-shadow: 0 0 2px 2px #2b9898;
+    box-shadow: 0 0 2px 2px var(--light_bg3);
 }
 .dark_input:focus{
     box-shadow: 0 0 2px 2px var(--light_color2);
 }
 .btn{
     padding:0.5rem;
-    background: #5bd8d8;
-    border: 1px solid #2c9393;
+    background: var(--light_bg2);
+    border: 1px solid var(--light_bg2);
     border-radius: 0.2rem;
     color: #312929;
     font-weight: 550;
@@ -130,7 +130,7 @@
     color: var(--dark_bg1);
 }
 .btn:hover{
-    background: #4cbaba;
+    background: var(--light_bg3);
 }
 .dark_btn:hover{
     background: var(--dark_bg3);

@@ -15,9 +15,7 @@ export const VideoDetails = () =>{
     const [ toggleToast , setToggleToast] = useState(false)
     const { videoId } = useParams()
     const { state , dispatch } = useVideos()
-    console.log("state: ", state)
     const videoData  = state.videos.find(video => video.videoId === videoId)
-    console.log(state.watchLater)
 
     const isLiked = () => state.liked.find(video => video.videoId === videoId)
     const isInWatchlater = () => state.watchLater.find(video => video.videoId === videoId)
@@ -32,11 +30,10 @@ export const VideoDetails = () =>{
 
     const addToLikes = async () =>{
         try{
-            const response = await axios.post('https://plovex-player-backend.herokuapp.com/liked-videos',{
+            await axios.post('https://plovex-player-backend.herokuapp.com/liked-videos',{
                 _id: videoData._id
             })
             actionBtnClickHandler("TOGGLE_LIKE" , "Added To Liked Videos")
-            console.log(response)
         }catch(err){
             console.error(err.message)
         }
@@ -55,11 +52,10 @@ export const VideoDetails = () =>{
 
     const addToWatchlater = async () =>{
         try{
-            const response = await axios.post('https://plovex-player-backend.herokuapp.com/watchlater',{
+            await axios.post('https://plovex-player-backend.herokuapp.com/watchlater',{
                 _id : videoData._id
             })
             actionBtnClickHandler("ADD_TO_WATCHLATER" , "Added To Watchlater")
-            console.log("Add to watchlater: ",response)
         }catch(err){
             console.error(err.message)
         }
@@ -67,17 +63,14 @@ export const VideoDetails = () =>{
 
     const removeFromWatchlater = async () =>{
         try{
-            console.log("request object in remove watchlater: " , {_id : videoData._id})
-            const response = await axios.delete('https://plovex-player-backend.herokuapp.com/watchlater',{
+            await axios.delete('https://plovex-player-backend.herokuapp.com/watchlater',{
                 data: { _id : videoData._id }
             })
             actionBtnClickHandler("REMOVE_FROM_WATCHLATER" , "Removed From Watchlater")
-            console.log("Remove from watchLater: ",response)
         }catch(err){
             console.error(err.message)
         }
     }
-    console.log("videoData: ", videoData)
     return(
         <>
         {

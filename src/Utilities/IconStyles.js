@@ -4,7 +4,7 @@ export const IconStyle = ()=>{
     const { theme } = useTheme()
 
     const iconStyle = {
-        color:"turquoise",
+        color: "#8B5CF6",
         size:"2rem"
     }
     const darkIconStyle = {

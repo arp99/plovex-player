@@ -37,7 +37,7 @@ export const SearchBar = () =>{
                     ?
                     `${searchBarStyle.searchBox__container}  ${getThemeClassName()}`                     
                     : 
-                    `${getThemeClassName()} ${searchBarStyle.hidden}`
+                    `${searchBarStyle.searchBox__container}  ${getThemeClassName()} ${searchBarStyle.hidden}`
                     }
             >
             <input 

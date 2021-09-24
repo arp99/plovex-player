@@ -8,7 +8,6 @@ export const Videolisting = () =>{
     const { searchStr } = useSearchData()
     const [ filteredVideos , setFilterVideos ] = useState(videos)
     const { theme } = useTheme()
-    console.log(videos)
     useEffect(()=>{
         setFilterVideos(()=> 
                 videos.filter(video => 
@@ -24,7 +23,6 @@ export const Videolisting = () =>{
                 :
                 ``
     }
-    console.log("Filtered videos: ", filteredVideos)
     return(
         <>
             {

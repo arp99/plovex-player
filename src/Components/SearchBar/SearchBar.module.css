@@ -5,12 +5,11 @@
     justify-content: space-around;
     align-items: center;
     height: max-content;
-    background: #ecf7fa;
+    background: var(--light_bg1);
     padding: 0.5rem 0;
-    transition: 0.2s;
+    transition: 0.4s;
 }
 .dark_SearchBox{
-    /* background: #4c5f7a; */
     background: var(--dark_bg3);
 }
 .hidden{
@@ -18,7 +17,7 @@
 }
 .searchBox {
     padding: 0.5rem;
-    border: 1px solid #439d94;
+    border: 2px solid var(--light_bg2);
     border-radius: 0.5rem;
     outline: none;
     width: 60%;
@@ -27,5 +26,5 @@
     transition: 0.5s;
 }
 .searchBox:focus{
-    box-shadow: 0 0 1px 2px #88faef;
+    box-shadow: 0 0 1px 2px var(--light_bg2);
 }

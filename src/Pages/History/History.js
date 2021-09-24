@@ -1,13 +1,13 @@
 import { useVideos } from "../../Context"
 import { HorizontalVideoCard , Loading } from "../../Components";
+import HistoryStyles from "./History.module.css"
 
 export const History  = () =>{
     const { state } = useVideos()
     const historyData = state.history
-    console.log("history data: " , historyData)
     return(
-        <div>
-            <h1>History</h1>
+    <div className={`${HistoryStyles.history__conatainer}`}>
+            <h1 className="heading">History</h1>
             {
                 state.videos.length === 0 
                 ?

@@ -1,7 +1,4 @@
-// import { v4 as uuid } from "uuid"
-
 export const reducer  = (prevState , { type , payload}) =>{
-    console.log(payload)
     switch(type){
         case "LOAD_DATA" : 
             return { 
@@ -30,7 +27,6 @@ export const reducer  = (prevState , { type , payload}) =>{
             }
         case "ADD_TO_HISTORY":
             const { videoId } = payload.videoData
-            console.log("payload videoData: " , payload.history)
             const isPresentInHistory =  prevState.history.find(video => video.videoId === videoId)
             if(!isPresentInHistory){
                 return { ...prevState , history: [ ...(prevState.history) , { ...(payload.videoData) } ]}

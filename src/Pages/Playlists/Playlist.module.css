@@ -1,6 +1,7 @@
 .allPlaylists__container{
     height: max-content;
     min-height: 100vh;
+    padding-bottom : 10vh;
 }
 .playlist-videos__container{
     width: 100vw;

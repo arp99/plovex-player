@@ -38,7 +38,7 @@ function App() {
             }
           })
         }catch(err){
-          console.log(err)
+          console.error(err)
         }
       }
     )()

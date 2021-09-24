@@ -6,17 +6,13 @@ import axios from "axios"
 export const Thumbnail = ( { videoData } ) =>{
     const { dispatch } = useVideos()
     const { theme } = useTheme()
-    // console.log(state)
-    // const { videos } = state 
-    // const videoData = videos.find(video => video.id === videoId)
     const { videoId , title , thumbnail } = videoData
 
     const addToHistoryHandler = async () =>{
         try{
-            const response = await axios.post('https://plovex-player-backend.herokuapp.com/history',{
+            await axios.post('https://plovex-player-backend.herokuapp.com/history',{
                 _id: videoData._id
             })
-            console.log("add to history response:" ,response)
             dispatch({type: "ADD_TO_HISTORY" , payload: { videoData } })
         }catch(err){
             console.error(err.message)
@@ -37,7 +33,7 @@ export const Thumbnail = ( { videoData } ) =>{
             </Link>
             </div>
             <div className={`${ThumbnailStyle['card-details']}`}>
-                <h2 className={`${ThumbnailStyle['card-heading']}`}>
+                <h2>
                 <Link 
                     to ={`/v/${videoId}`} 
                     className={theme === "dark" ? `${ThumbnailStyle.dark_theme_link}`:''}

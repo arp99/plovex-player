@@ -2,7 +2,7 @@
     min-width: 15rem;
     width: max-content;
     padding: 0.5rem;
-    background: #40e0d0;
+    background: var(--light_bg1);
     color: #f7f7f7;
     letter-spacing: 0.1rem;
     font-size: 1.5rem;
@@ -10,7 +10,7 @@
     text-transform: capitalize;
     text-align: center;
     border-radius: 0.5rem;
-    box-shadow: 0 4px 8px -2px #40e0d0;
+    box-shadow: 0 4px 8px -2px var(--light_bg1);
     visibility: hidden;
     position: fixed;
     bottom: 5rem;

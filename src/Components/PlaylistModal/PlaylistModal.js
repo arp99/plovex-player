@@ -9,7 +9,6 @@ export const PlaylistModal = ({ showModal , videoData }) =>{
     const { playlist } = videosState
     const playlistInput = useRef(null)
     const { theme } = useTheme()
-    console.log("playlistState: ", playlist)    
     const playlistCreateHandler = async()=>{
             const playlistName = playlistInput.current.value
             if(playlistName !== ""){
@@ -37,11 +36,10 @@ export const PlaylistModal = ({ showModal , videoData }) =>{
 
     const toggleVideoInPlaylist = async ( playlistId ) =>{
         try{
-            const response = await axios.post(`https://plovex-player-backend.herokuapp.com/playlists/${ playlistId }`,{
+            await axios.post(`https://plovex-player-backend.herokuapp.com/playlists/${ playlistId }`,{
                 videoId : videoData._id
             })
             dispatch({type : "TOGGLE_VIDEO_IN_PLAYLIST" , payload: { playlistId , videoData }})
-            console.log(response)
         }catch(err){
             console.error(err.message)
         }
