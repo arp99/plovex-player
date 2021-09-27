@@ -1,9 +1,9 @@
 import NavStyle from "./Navbar.module.css"
-import { Link } from "react-router-dom"
 import { MdHome , MdHistory , MdPlaylistAdd , MdWatchLater , MdFavorite } from "react-icons/md"
 import { IconContext } from "react-icons";
 import { useTheme } from "../../Context";
 import { IconStyle } from "../../Utilities";
+import { Listitem } from "./Listitem";
 
 export const Navbar = () =>{
     const { theme } = useTheme()
@@ -15,49 +15,33 @@ export const Navbar = () =>{
             :
             ``
     }
-    const getDarkListItem = () =>{
-        return theme === "dark"
-            ?
-            `${NavStyle.dark_list__item}`
-            :
-            ``
-    }
+    
     return(
         <nav className={`${NavStyle.navbar__container}`}>
             <div 
                 className={`${NavStyle['navbar__list-items']} ${getDarkNavbar()}`} >
                 <IconContext.Provider value={IconStyle()} >
                     <ul className={`${NavStyle.list__container}`}>
-                        <li className={`${NavStyle.list__item} ${getDarkListItem()}`}>
-                            <Link to="/">
-                                <MdHome />
-                            </Link>
-                        <small>Home</small>
-                        </li>
-                        <li className={`${NavStyle.list__item} ${getDarkListItem()}`}>
-                            <Link to="/playlist">
-                                <MdPlaylistAdd />
-                            </Link>
-                            <small>Playlists</small>
-                        </li>
-                        <li className={`${NavStyle.list__item} ${getDarkListItem()}`}>
-                            <Link to="/watchlater">
-                                <MdWatchLater />
-                            </Link>
-                            <small>Watchlater</small>
-                        </li>
-                        <li className={`${NavStyle.list__item} ${getDarkListItem()}`}>
-                            <Link to="/liked-videos">
-                                <MdFavorite />
-                            </Link>
-                            <small>Likes</small>
-                        </li>
-                        <li className={`${NavStyle.list__item} ${getDarkListItem()}`}>
-                            <Link to="/history">
-                                <MdHistory />
-                            </Link>
-                            <small>History</small>
-                        </li>
+                        <Listitem link="/">
+                            <MdHome />
+                            <small className={`${NavStyle.nav_title}`}>Home</small>
+                        </Listitem>        
+                        <Listitem link="/playlist">
+                            <MdPlaylistAdd />
+                            <small className={`${NavStyle.nav_title}`}>Playlists</small>
+                        </Listitem>
+                        <Listitem link="/watchlater">
+                            <MdWatchLater />
+                            <small className={`${NavStyle.nav_title}`}>Watchlater</small>
+                        </Listitem>
+                        <Listitem link="/liked-videos">
+                            <MdFavorite />
+                            <small className={`${NavStyle.nav_title}`}>Likes</small>
+                        </Listitem>
+                        <Listitem link="/history">
+                            <MdHistory />
+                            <small className={`${NavStyle.nav_title}`}>History</small>
+                        </Listitem>
                     </ul>
                 </IconContext.Provider>
             </div>

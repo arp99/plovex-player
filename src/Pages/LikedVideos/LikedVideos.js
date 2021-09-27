@@ -17,7 +17,7 @@ export const LikedVideos = () =>{
                 :
                 likedVideos.length === 0 ? <small>No Liked Videos</small>
                 :
-                <div className="liked-videos">
+                <div className={`${LikedVideosStyles["liked-videos"]}`}>
                     {
                         likedVideos.map( video =>{
                             return(

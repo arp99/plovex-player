@@ -12,16 +12,18 @@ export const Toast = ({ toastMsg , setToggleToast }) =>{
             setToggleToast(false)
         },3000)
     },[setToggleToast])
+
+    console.log("Toast message: ", toastMsg)
     return(
         <div 
             className={
                 `
                     ${ToastStyle.toast__container}
-                    ${theme === "dark"?`${ToastStyle.dark_toast__container}`:``} 
-                    ${showToast?`${ToastStyle.show}`:``}
+                    ${ theme === "dark" && `${ToastStyle.dark_toast__container}`}
+                    ${showToast && `${ToastStyle.show}`}
                 `
             }>
-            <small className="toast-message">{ toastMsg }</small>
+            <small className={`${ToastStyle["toast-message"]}`}>{ toastMsg }</small>
         </div>
     )
 }

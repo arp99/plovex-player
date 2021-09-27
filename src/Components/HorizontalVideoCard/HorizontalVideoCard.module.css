@@ -3,6 +3,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0.5rem;
+    border-radius: 0.5rem;
     box-shadow: 0 2px 5px -1px #51706d;
 }
 .thumbnail__container{
@@ -23,4 +24,17 @@
 }
 .video-description__container p{
     font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 768px) {
+    .video__container{
+        flex-direction: column;
+        width: 100%;
+    }
+    .thumbnail__container{
+        width: 100%;
+    }
+    .video-description__container{
+        width: 100%;
+    }
 }

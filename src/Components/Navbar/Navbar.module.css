@@ -1,8 +1,3 @@
-*{
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
-}
 .navbar__container{
     width: 100%;
     position: fixed;
@@ -15,7 +10,6 @@
     background: var(--light_bg1);
     padding: 0.5rem;
     padding-bottom: 0;
-    z-index: 2;
     transition: 0.2s;
 }
 .dark_navbar{
@@ -30,13 +24,48 @@
     color: var(--light_bg4);
     font-weight: 600;
     letter-spacing: 0.1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    
 }
 .dark_list__item{
     color: #7a9fba;
 }
 .list__item > a{
     text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar__container{
+        top: 0;
+        width: 4rem;
+        overflow-x: hidden;
+        height: 100vh;
+        transition: 0.5s;
+    }
+    .navbar__container:hover{
+        width: 12rem;
+        box-shadow: 2px 0 10px 1px var(--light_bg4);
+    }
+    .navbar__container:hover small{
+        display: block;
+    }
+    .navbar__list-items{
+        height: 100%;
+        padding-top: 8vh;
+    }
+    .list__container{
+        flex-direction: column;
+        height: 100%;
+        padding-left:0.5rem;
+    }
+    .list__item > a{
+        flex-direction: row;
+    }
+    .nav_title{
+        display: none;
+        margin-left: 1.5rem;
+    }
 }

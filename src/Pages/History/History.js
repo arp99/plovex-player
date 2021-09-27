@@ -15,7 +15,7 @@ export const History  = () =>{
                 :
                 historyData.length === 0 ? <small>Nothing in Watch History.</small>
                 :
-                <div className="history-videos">
+                <div className={`${ HistoryStyles["history-videos"] }`}>
                     {
                         historyData.map( video =>{
                             return(

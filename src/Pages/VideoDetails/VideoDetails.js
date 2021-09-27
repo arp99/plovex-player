@@ -6,10 +6,9 @@ import { MdFavoriteBorder , MdFavorite , MdPlaylistAdd } from "react-icons/md"
 import { IoTimeOutline , IoTimeSharp } from "react-icons/io5";
 import { IconContext } from "react-icons";
 import { IconStyle } from "../../Utilities"
-
+import VideodetailsStyles from "./VideoDetails.module.css"
 import axios from "axios"
 
-import "./VideoDetails.css"
 export const VideoDetails = () =>{
     const [ showPlaylistModal , setShowPlaylistModal ] = useState(false)
     const [ toggleToast , setToggleToast] = useState(false)
@@ -40,11 +39,10 @@ export const VideoDetails = () =>{
     }
     const removeFromLikes = async () =>{
         try{
-            const response = await axios.delete('https://plovex-player-backend.herokuapp.com/liked-videos',{
+            await axios.delete('https://plovex-player-backend.herokuapp.com/liked-videos',{
                 data: { _id : videoData._id }
             })
             actionBtnClickHandler("TOGGLE_LIKE" , "Removed From Liked Videos")
-            console.error(response)
         }catch(err){
             console.error(err.message)
         }
@@ -79,7 +77,7 @@ export const VideoDetails = () =>{
         {
             !videoData ? <Loading />
             :
-            <div className="video__container">
+            <div className={`${VideodetailsStyles.video__container}`}>
            <iframe
                 width="100%"
                 height="100%"
@@ -91,20 +89,20 @@ export const VideoDetails = () =>{
             ></iframe>
             <h2>{videoData.title}</h2>
             <IconContext.Provider value={IconStyle()} >
-                <div className="actions-btn__container">
+                <div className={`${VideodetailsStyles["actions-btn__container"]}`}>
                     {
                         isLiked() ? 
                         (
                             <MdFavorite 
                                 onClick={ removeFromLikes }
-                                className="btn-action"
+                                className={`${VideodetailsStyles["btn-action"]}`}
                             /> 
                         )
                         : 
                         (
                             <MdFavoriteBorder 
                                 onClick={ addToLikes }
-                                className="btn-action"
+                                className={`${VideodetailsStyles["btn-action"]}`}
                             />
                         )
                     }
@@ -113,20 +111,20 @@ export const VideoDetails = () =>{
                         (
                             <IoTimeSharp 
                                 onClick={ removeFromWatchlater }
-                                className="btn-action"
+                                className={`${VideodetailsStyles["btn-action"]}`}
                             />        
                         )
                         :
                         (
                             <IoTimeOutline 
                                 onClick={ addToWatchlater }
-                                className="btn-action"
+                                className={`${VideodetailsStyles["btn-action"]}`}
                             />
                         )
                     }
                     <MdPlaylistAdd 
                         onClick={()=>setShowPlaylistModal(true)}
-                        className="btn-action"
+                        className={`${VideodetailsStyles["btn-action"]}`}
                     />
                 </div>
             </IconContext.Provider>

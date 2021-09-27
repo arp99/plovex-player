@@ -16,7 +16,7 @@ export const Watchlater = () =>{
                 :
                 videoData.length === 0 ?<small>No videos in Watchlater</small>
                 :
-                <div className="watchlater-videos">
+                <div className={`${ WatchlaterStyles["watchlater-videos"]}`}>
                     {
                         videoData.map( video =>{
                             return(

@@ -2,12 +2,13 @@
     position: fixed;
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: max-content;
     background: var(--light_bg1);
-    padding: 0.5rem 0;
+    padding: 0.5rem;
     transition: 0.4s;
+    box-shadow: 0 2px 10px -2px var(--light_bg4);
 }
 .dark_SearchBox{
     background: var(--dark_bg3);
@@ -19,12 +20,13 @@
     padding: 0.5rem;
     border: 2px solid var(--light_bg2);
     border-radius: 0.5rem;
-    outline: none;
-    width: 60%;
+    width: 40%;
     letter-spacing: 0.1rem;
-    color: #1f534e;
-    transition: 0.5s;
+    color: var(--light_bg4);
+    transition: 0.4s;
+    margin-left: auto;
 }
 .searchBox:focus{
     box-shadow: 0 0 1px 2px var(--light_bg2);
+    outline: 3px solid transparent;
 }
