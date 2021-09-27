@@ -78,63 +78,62 @@ export const VideoDetails = () =>{
             !videoData ? <Loading />
             :
             <div className={`${VideodetailsStyles.video__container}`}>
-           <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${videoData.videoId}`}
-                title="YouTube video player"
-                frameBorder="0"
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-            ></iframe>
-            <h2>{videoData.title}</h2>
-            <IconContext.Provider value={IconStyle()} >
-                <div className={`${VideodetailsStyles["actions-btn__container"]}`}>
-                    {
-                        isLiked() ? 
-                        (
-                            <MdFavorite 
-                                onClick={ removeFromLikes }
-                                className={`${VideodetailsStyles["btn-action"]}`}
-                            /> 
-                        )
-                        : 
-                        (
-                            <MdFavoriteBorder 
-                                onClick={ addToLikes }
-                                className={`${VideodetailsStyles["btn-action"]}`}
-                            />
-                        )
-                    }
-                    {
-                        isInWatchlater() ?
-                        (
-                            <IoTimeSharp 
-                                onClick={ removeFromWatchlater }
-                                className={`${VideodetailsStyles["btn-action"]}`}
-                            />        
-                        )
-                        :
-                        (
-                            <IoTimeOutline 
-                                onClick={ addToWatchlater }
-                                className={`${VideodetailsStyles["btn-action"]}`}
-                            />
-                        )
-                    }
-                    <MdPlaylistAdd 
-                        onClick={()=>setShowPlaylistModal(true)}
-                        className={`${VideodetailsStyles["btn-action"]}`}
-                    />
-                </div>
-            </IconContext.Provider>
-            {
-                showPlaylistModal ?(
-                    <PlaylistModal 
-                            showModal={setShowPlaylistModal}
-                            videoData={videoData}
-                    />):null
-            }
+                <iframe
+                    src={`https://www.youtube.com/embed/${videoData.videoId}`}
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                    className={`${VideodetailsStyles.video_iframe}`}
+                ></iframe>
+                <h2 className={`${VideodetailsStyles.video__title}`}>{videoData.title}</h2>
+                <IconContext.Provider value={IconStyle()} >
+                    <div className={`${VideodetailsStyles["actions-btn__container"]}`}>
+                        {
+                            isLiked() ? 
+                            (
+                                <MdFavorite 
+                                    onClick={ removeFromLikes }
+                                    className={`${VideodetailsStyles["btn-action"]}`}
+                                /> 
+                            )
+                            : 
+                            (
+                                <MdFavoriteBorder 
+                                    onClick={ addToLikes }
+                                    className={`${VideodetailsStyles["btn-action"]}`}
+                                />
+                            )
+                        }
+                        {
+                            isInWatchlater() ?
+                            (
+                                <IoTimeSharp 
+                                    onClick={ removeFromWatchlater }
+                                    className={`${VideodetailsStyles["btn-action"]}`}
+                                />        
+                            )
+                            :
+                            (
+                                <IoTimeOutline 
+                                    onClick={ addToWatchlater }
+                                    className={`${VideodetailsStyles["btn-action"]}`}
+                                />
+                            )
+                        }
+                        <MdPlaylistAdd 
+                            onClick={()=>setShowPlaylistModal(true)}
+                            className={`${VideodetailsStyles["btn-action"]}`}
+                        />
+                    </div>
+                </IconContext.Provider>
+                {
+                    showPlaylistModal ?(
+                        <PlaylistModal 
+                                showModal={setShowPlaylistModal}
+                                videoData={videoData}
+                        />):null
+                }
             </div>
         }
        </>
