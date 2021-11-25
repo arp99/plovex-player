@@ -1,0 +1,32 @@
+.toggler__container {
+    border: 1px solid grey;
+    border-radius: 0.8rem;
+    width: 3.2rem;
+    height: max-content;
+    padding: 0.1rem;
+    background: #272b31;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+}
+  .toggler-btn {
+    width: 1.5rem;
+    height: 100%;
+    background: #f7f7ff;
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: 0 0 2px 3px #7a8cf5;
+    transition: 0.2s;
+  }
+  .light {
+    left: 0;
+    top: 0;
+  }
+  .dark {
+    left: 100%;
+    top: 0;
+    transform: translateX(-100%);
+  }
+  

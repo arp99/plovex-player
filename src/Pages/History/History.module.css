@@ -1,0 +1,35 @@
+.history__conatainer{
+    min-height:100vh;
+}
+.history-videos{
+    width: 100%;
+    height: 100%;
+    padding-bottom : 10vh;
+}
+
+@media only screen and (min-width: 768px) {
+    .history__conatainer{
+        padding-left: 4.5rem;
+        padding-right: 0.5rem;
+        overflow-x: hidden;
+    }
+
+    .history-videos{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: max-content;
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .history-videos{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media only screen and (min-width: 1200px) {
+    .history-videos{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
