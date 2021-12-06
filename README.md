@@ -10,6 +10,9 @@ $ cd plovex-player
 $ npm install
 ```
 
+## **Backend Repository**
+https://github.com/arp99/plovex-player-backend/tree/main
+
 ## **Technologies Used**
 
 - React
