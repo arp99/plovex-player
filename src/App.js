@@ -1,7 +1,7 @@
 import { Navbar } from "./Components"
 import { Routes , Route } from "react-router-dom"
 import './App.css';
-import { History, VideoDetails, Videolisting, Watchlater, Playlist, LikedVideos } from "./Pages";
+import { History, VideoDetails, Videolisting, Watchlater, Playlist, LikedVideos, Singleplaylist } from "./Pages";
 import { useTheme, useVideos } from "./Context";
 import axios from "axios"
 import { useEffect } from "react";
@@ -20,11 +20,11 @@ function App() {
             playlists,
             history
           ] = await Promise.all([
-            axios.get('https://plovex-player-backend.herokuapp.com/videos'),
-            axios.get('https://plovex-player-backend.herokuapp.com/watchlater'),
-            axios.get('https://plovex-player-backend.herokuapp.com/liked-videos'),
-            axios.get('https://plovex-player-backend.herokuapp.com/playlists'),
-            axios.get('https://plovex-player-backend.herokuapp.com/history')
+            axios.get('https://plovex-player-backend-production.up.railway.app/videos'),
+            axios.get('https://plovex-player-backend-production.up.railway.app/watchlater'),
+            axios.get('https://plovex-player-backend-production.up.railway.app/liked-videos'),
+            axios.get('https://plovex-player-backend-production.up.railway.app/playlists'),
+            axios.get('https://plovex-player-backend-production.up.railway.app/history')
           ]);
       
           dispatch({
@@ -53,6 +53,7 @@ function App() {
         <Route path="/history"  element={<History />}/>
         <Route path="/watchlater" element={<Watchlater />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/playlist/:playlistId" element={<Singleplaylist />} />
         <Route path="/liked-videos" element={<LikedVideos />} />
       </Routes>
     </div>

@@ -1,0 +1,48 @@
+.playlist__container {
+  min-height:100vh;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-description__container {
+  width: 100%;
+  height: 10%;
+  border-right: 2px solid var(--light_color2);
+  padding: 0 1rem;
+}
+.playlist-videos__container{
+  width: 100%;
+  padding: 0 1rem;
+}
+.playlist-description__container h1{
+  text-transform: capitalize;
+}
+.playlist-description__container img{
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .playlist__container {
+    max-height: 100vh;
+    flex-direction: row;
+    padding: 0 0 2rem 4.5rem;
+    overflow-y: hidden;
+  }
+  .playlist-description__container {
+    height: 100vh;
+    width: 30%;
+    padding: 1rem 0;
+    padding-right: 8px;
+  }
+  .playlist-videos__container {
+    width: 90%;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+  .playlist-description__container img{
+    display: block;
+    width: 100%;
+    height: 15rem;
+  }
+}
