@@ -13,6 +13,20 @@ export const PlaylistVideoCard = ({ videoData, playlistId }) => {
   const truncateStr = (str) =>
     str.length > 40 ? `${str.substring(0, 60)}...` : str;
 
+  const removeVideoFromPlaylist = async () => {
+    try {
+      await axios.delete(
+        `https://plovex-player-backend-production.up.railway.app/playlists/remove-video/${playlistId}?videoId=${videoData._id}`
+      );
+      dispatch({
+        type: "REMOVE_FROM_PLAYLIST",
+        payload: { playlistId, videoId: videoData.videoId },
+      });
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
   return (
     <div className={PlaylistVideoCardStyle.video__container}>
       <div className={PlaylistVideoCardStyle.thumbnail__container}>
@@ -25,12 +39,7 @@ export const PlaylistVideoCard = ({ videoData, playlistId }) => {
         <IconContext.Provider value={IconStyle()}>
           <RiDeleteBin6Line
             className="btn-action"
-            onClick={() =>
-              dispatch({
-                type: "REMOVE_FROM_PLAYLIST",
-                payload: { playlistId, videoId: videoData.videoId },
-              })
-            }
+            onClick={removeVideoFromPlaylist}
           />
         </IconContext.Provider>
       </div>

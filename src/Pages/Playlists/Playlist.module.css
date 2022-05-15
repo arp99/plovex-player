@@ -63,11 +63,13 @@
     }
     .playlist-thumnail__container img{
         width: 30rem;
+        height: 18rem;
     }
 }
 
 @media only screen and (min-width: 992px) {
     .playlist-thumnail__container img{
         width: 25rem;
+        height: 18rem;
     }
 }

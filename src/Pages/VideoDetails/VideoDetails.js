@@ -19,7 +19,6 @@ export const VideoDetails = () =>{
     const isLiked = () => state.liked.find(video => video.videoId === videoId)
     const isInWatchlater = () => state.watchLater.find(video => video.videoId === videoId)
 
-    // const { videoId , title } = videoData || {}
     const [toastMsg , setToastMsg] = useState("")
     const actionBtnClickHandler = ( type , msg) =>{
         setToggleToast(true)
@@ -29,7 +28,7 @@ export const VideoDetails = () =>{
 
     const addToLikes = async () =>{
         try{
-            await axios.post('https://plovex-player-backend.herokuapp.com/liked-videos',{
+            await axios.post('https://plovex-player-backend-production.up.railway.app/liked-videos',{
                 _id: videoData._id
             })
             actionBtnClickHandler("TOGGLE_LIKE" , "Added To Liked Videos")
@@ -39,7 +38,7 @@ export const VideoDetails = () =>{
     }
     const removeFromLikes = async () =>{
         try{
-            await axios.delete('https://plovex-player-backend.herokuapp.com/liked-videos',{
+            await axios.delete('https://plovex-player-backend-production.up.railway.app/liked-videos',{
                 data: { _id : videoData._id }
             })
             actionBtnClickHandler("TOGGLE_LIKE" , "Removed From Liked Videos")
@@ -50,7 +49,7 @@ export const VideoDetails = () =>{
 
     const addToWatchlater = async () =>{
         try{
-            await axios.post('https://plovex-player-backend.herokuapp.com/watchlater',{
+            await axios.post('https://plovex-player-backend-production.up.railway.app/watchlater',{
                 _id : videoData._id
             })
             actionBtnClickHandler("ADD_TO_WATCHLATER" , "Added To Watchlater")
@@ -61,7 +60,7 @@ export const VideoDetails = () =>{
 
     const removeFromWatchlater = async () =>{
         try{
-            await axios.delete('https://plovex-player-backend.herokuapp.com/watchlater',{
+            await axios.delete('https://plovex-player-backend-production.up.railway.app/watchlater',{
                 data: { _id : videoData._id }
             })
             actionBtnClickHandler("REMOVE_FROM_WATCHLATER" , "Removed From Watchlater")
